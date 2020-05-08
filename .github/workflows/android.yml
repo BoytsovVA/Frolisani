@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
 
 jobs:
   codeStyle:
@@ -31,3 +31,14 @@ jobs:
       run: | 
            cd ./Recipes/app
            gradle build
+           
+  pull-request:
+      runs-on: ubuntu-latest
+      needs: [build, codeStyle]
+      steps:
+      - uses: actions/checkout@v2
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        
