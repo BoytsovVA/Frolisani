@@ -1,5 +1,7 @@
 package com.example.Recipes;
 
+import java.util.ArrayList;
+
 public class Recipes_class {
   private int id;
   private String name;
@@ -12,6 +14,15 @@ public class Recipes_class {
   private int block;
   private int favorites;
   private int position;
+  ArrayList<Integer> products;
+
+  public ArrayList<Integer> getProducts() {
+    return products;
+  }
+
+  public void setProducts(ArrayList<Integer> products) {
+    this.products = products;
+  }
 
   public Recipes_class() {
     position = 0;

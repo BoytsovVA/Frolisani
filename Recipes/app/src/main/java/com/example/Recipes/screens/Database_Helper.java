@@ -16,7 +16,7 @@ import java.util.ArrayList;
 class DatabaseHelper extends SQLiteOpenHelper {
   private static String DB_NAME = "main_db.sqlite";
   private static String DB_PATH = "";
-  private static final int DB_VERSION = 1;
+  private static final int DB_VERSION = 2;
 
   private SQLiteDatabase mDataBase;
   private final Context mContext;
@@ -118,6 +118,25 @@ class DatabaseHelper extends SQLiteOpenHelper {
     return products;
   }
 
+  public ArrayList<Integer> listProduct1() {
+    ArrayList<Integer> products = new ArrayList<>();
+    String selectQuery =
+        "SELECT p_id FROM app_entry WHERE p_priority =? INTERSECT SELECT product_id FROM"
+            + " app_product WHERE product_fridge =?;";
+    SQLiteDatabase db = this.getWritableDatabase();
+    Cursor cursor = db.rawQuery(selectQuery, new String[] {"1", "1"});
+    if (cursor.moveToFirst()) {
+      do {
+
+        products.add(cursor.getInt(0));
+
+      } while (cursor.moveToNext());
+    }
+    db.close();
+    cursor.close();
+    return products;
+  }
+
   ///////////////////// запросы
   public ArrayList<Recipes_class> listRecipes(String _selectQuere, String[] _where) {
     ArrayList<Recipes_class> recipes = new ArrayList<>();
@@ -144,6 +163,22 @@ class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.getString(9) != "Null") {
           recipe.setImage(cursor.getString(9));
         } else recipe.setImage("NULL");
+
+        Cursor cursor1 =
+            db.rawQuery(
+                "SELECT p_id FROM app_entry WHERE p_priority =? AND r_id = ?;",
+                new String[] {"1", String.valueOf(recipe.GetId())});
+        int h = 0;
+        ArrayList<Integer> product = new ArrayList<Integer>();
+        if (cursor1.moveToFirst()) {
+          do {
+            product.add(cursor1.getInt(0));
+            h++;
+          } while (cursor1.moveToNext());
+        }
+        recipe.setProducts(product);
+        cursor1.close();
+
         recipes.add(recipe);
       } while (cursor.moveToNext());
     }

@@ -11,21 +11,35 @@
         android:id="@+id/Search_pr"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         android:hint="Введите рецепт"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFridg"
-        android:layout_width="match_parent"
+        android:layout_width="407dp"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
+        android:layout_marginBottom="50dp"
         android:clipToPadding="false"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbarFadeDuration="1000"
-        android:scrollbarSize="80dp"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
         android:scrollbarStyle="insideOverlay"
         android:scrollbars="vertical"
         android:verticalScrollbarPosition="right"
-        app:layout_constraintTop_toBottomOf="@+id/Search" />
+        app:layout_constraintBottom_toTopOf="@+id/search_recipes"
+        app:layout_constraintTop_toBottomOf="@+id/Search"
+        tools:layout_editor_absoluteX="4dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/search_recipes"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F49EBC"
+        android:text="Поиск рецептов"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="161dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.Recipes.R;
 import com.example.Recipes.screens.menu.drinks;
@@ -35,10 +37,12 @@ public class search extends AppCompatActivity implements View.OnClickListener {
     Drinks = (ImageButton) findViewById(R.id.drinks);
     Drinks.setOnClickListener(this);
 
-    editText.setOnKeyListener(
-        new View.OnKeyListener() {
-          public boolean onKey(View v, int keyCode, KeyEvent event) {
-            if (event.getAction() == KeyEvent.ACTION_DOWN && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+    editText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+    editText.setOnEditorActionListener(
+        new EditText.OnEditorActionListener() {
+          @Override
+          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
               String NameRecipes = editText.getText().toString();
               Intent intent = new Intent(search.this, Recicler_search.class);
               String req =
