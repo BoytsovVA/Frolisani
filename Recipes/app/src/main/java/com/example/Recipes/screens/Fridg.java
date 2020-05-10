@@ -59,9 +59,23 @@ public class Fridg extends AppCompatActivity implements View.OnClickListener {
               int position = 0;
               for (int i = 0; i < size; i++) {
                 String name = prod.get(i).getName();
-
-                if (prod.get(i).getName().equalsIgnoreCase(NameProduct))
-                  position = prod.get(i).getPosition();
+                if (NameProduct.length() == 1) {
+                  if (prod.get(i)
+                      .getName()
+                      .substring(0, 1)
+                      .toLowerCase()
+                      .contains(NameProduct.toLowerCase())) {
+                    position = prod.get(i).getPosition();
+                    break;
+                  }
+                } else if (NameProduct.length() > 1) {
+                  if (prod.get(i).getName().toLowerCase().contains(NameProduct.toLowerCase())) {
+                    position = prod.get(i).getPosition();
+                    break;
+                  }
+                }
+                //                if (prod.get(i).getName().equalsIgnoreCase(NameProduct))
+                //                  position = prod.get(i).getPosition();
               }
               recyclerView.scrollToPosition(position);
               return true;
