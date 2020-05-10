@@ -20,12 +20,12 @@
     <TextView
         android:id="@+id/Name"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         android:ellipsize="middle"
         android:gravity="center"
         android:hint="Название"
         android:textColor="#050202"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/imageView8"
         tools:layout_editor_absoluteX="165dp" />
 

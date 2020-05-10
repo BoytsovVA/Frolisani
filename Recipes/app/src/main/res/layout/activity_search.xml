@@ -136,7 +136,7 @@
             <TextView
                 android:id="@+id/Main_product"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:ellipsize="middle"
                 android:focusable="auto"
