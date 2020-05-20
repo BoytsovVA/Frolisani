@@ -55,7 +55,9 @@ public class Recicler_search extends AppCompatActivity {
     if (request == null) request = getIntent().getStringArrayListExtra(EXTRA_REC7);
     if (request == null) request = getIntent().getStringArrayListExtra(EXTRA_RECIPE);
     if (request == null) {
-      ArrayList rec1 = mDBHelper.listRecipes("SELECT * FROM app_recipes", null);
+      ArrayList rec1 =
+          mDBHelper.listRecipes(
+              "SELECT * FROM app_recipes WHERE recipes_block =?", new String[] {"0"});
       ArrayList<Integer> products = new ArrayList<Integer>();
       products = mDBHelper.listProduct1();
       rec = comparison(rec1, products);
